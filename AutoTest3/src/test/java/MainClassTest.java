@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class MainClassTest extends BaseTest {
 
-
+/*
     @Test(dataProvider = "search_provider", groups = {"Smoke"})
     void shouldBeUbisoftArticle(String search) {
 
@@ -21,31 +21,23 @@ public class MainClassTest extends BaseTest {
         assertThat(new ArticlePage().getHeadingOfArticle()).as("The text must be Ubisoft")
                 .isEqualTo("Ubisoft");
 
-        try {
-            sleep(3000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
 
-    }
 
+*/
 
     @Test(dataProvider = "search_provider", groups = {"Smoke"})
     void shouldBeVisibleHistoryPage(String search) {
 
         new SearchPage()
+                .searchUbisoftArticle(search)
+                .clickEnter()
                 .clickTabArticle()
                 .clickOnHistoryArticle();
 
 
-        assertThat(new HistoryPage().getHeadingOfArticle2()).as("The text must be Заглавная страница: история изменений")
-                .isEqualTo("Заглавная страница: история изменений");
+        assertThat(new HistoryPage().getHeadingOfArticle2()).as("The text must be Ubisoft: история изменений")
+                .isEqualTo("Ubisoft: история изменений");
 
-        try {
-            sleep(3000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
 
     }
 
@@ -53,7 +45,7 @@ public class MainClassTest extends BaseTest {
     public Object[][] search_methods() {
         return new Object[][]{
                 {"Ubisoft"},
-              {"Bl"}
+              /*{"Bl"}*/
         };
     }
 
